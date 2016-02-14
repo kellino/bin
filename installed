@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+
+now=$(date)
+installed=~/Documents/installed.md
+haskell_home=~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/*
+local_bin=/usr/local/bin/*
+
+
+printf "**Installed Software %s**\n\n" "$now" > "$installed"
+
+if [ -x /usr/bin/yaourt ]; then
+    { yaourt -Qe;
+
+    for f in "$local_bin"; do
+        echo "${f}"
+    done  
+
+    for f in "$haskell_home"; do
+        echo "${f}"
+    done } >> "$installed"
+else
+    echo "yaourt not installed"
+fi
+
+if [ -x /usr/bin/rclone ]; then
+    rclone copy "$installed" gdrive:docs && echo "successfully transferred"
+else
+    echo "unable to transfer file"
+fi

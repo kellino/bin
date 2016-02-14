@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+for COLOUR in {0..255}
+do
+    for STYLE in "38;5"
+    do
+        TAG="\033[${STYLE};${COLOUR}m"
+        STR="${STYLE};${COLOUR}"
+        echo -ne "${TAG}${STR}${NONE}   "
+    done
+    echo
+done
+

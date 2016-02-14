@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -x /usr/bin/transset-df ] && [ -x /usr/bin/tmux ]; then
+    transset-df -a 0.78
+    tmux new-session -d 
+    if [ -x /usr/bin/ranger ]; then
+        tmux new-window 'ranger'
+    fi
+    if [ -x /usr/bin/mutt ]; then
+        tmux new-window 'mutt'
+    fi
+    tmux select-window -t 1
+    tmux -2 attach-session -d
+else 
+    echo "missing a necessary piece of software"
+fi
