@@ -2,8 +2,6 @@
 
 now=$(date)
 installed=~/Documents/installed.md
-haskell_home=~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/*
-local_bin=/usr/local/bin/*
 
 
 printf "**Installed Software %s**\n\n" "$now" > "$installed"
@@ -11,11 +9,11 @@ printf "**Installed Software %s**\n\n" "$now" > "$installed"
 if [ -x /usr/bin/yaourt ]; then
     { yaourt -Qe;
 
-    for f in "$local_bin"; do
+    for f in /usr/local/bin/* ; do
         echo "${f}"
     done  
 
-    for f in "$haskell_home"; do
+    for f in ~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/* ; do
         echo "${f}"
     done } >> "$installed"
 else
