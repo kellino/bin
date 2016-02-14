@@ -1,1 +1,1 @@
-a few simply scripts and utilities
+a few simple scripts and utilities
