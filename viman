@@ -1,3 +1,9 @@
 #! /bin/sh
 
-nvim -c "Man $1 $2" -c 'silent only'
+nvim=$(which nvim)
+
+if [ -x "$nvim" ]; then
+    nvim -c "Man $1 $2" -c 'silent only'
+else
+    echo "neovim is not available"
+fi
