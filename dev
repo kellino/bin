@@ -1,12 +1,17 @@
 #!/bin/sh
 
-if [ -x /usr/bin/transset-df ] && [ -x /usr/bin/tmux ]; then
+transset=$(which transset-df)
+tmux=$(which tmux)
+mutt=$(which mutt)
+ranger=$(which ranger)
+
+if [ -x "$transset" ] && [ -x "$tmux" ]; then
     transset-df -a 0.78
     tmux new-session -d 
-    if [ -x /usr/bin/ranger ]; then
+    if [ -x "$ranger" ]; then
         tmux new-window 'ranger'
     fi
-    if [ -x /usr/bin/mutt ]; then
+    if [ -x "$mutt" ]; then
         tmux new-window 'mutt'
     fi
     tmux select-window -t 1
