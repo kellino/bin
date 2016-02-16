@@ -2,21 +2,28 @@
 
 now=$(date)
 yaourt=$(which yaourt)
+ag=$(which ag)
 rclone=$(which rclone)
 installed=~/Documents/installed.md
 
-printf "**Installed Software %s**\n\n" "$now" > "$installed"
-
-if [ -x "$yaourt" ]; then
-    { yaourt -Qe;
-
+localBin() {
     for f in /usr/local/bin/* ; do
         echo "${f}"
     done  
-
     for f in ~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/* ; do
         echo "${f}"
-    done } >> "$installed"
+    done 
+}
+
+printTitle() {
+    printf "**Installed Software %s**\n\n" "$now" > "$installed"
+}
+
+set -e
+printTitle
+if [ -x "$yaourt" ] && [ -x "$ag" ]; then
+    { yaourt -Qe | ag -vi core; 
+        localBin; } >> "$installed"
 else
     echo "yaourt not installed"
 fi
@@ -26,3 +33,4 @@ if [ -x "$rclone" ]; then
 else
     echo "unable to transfer file"
 fi
+
