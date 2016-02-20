@@ -29,7 +29,8 @@ else
 fi
 
 if [ -x "$rclone" ]; then
-    rclone copy "$installed" gdrive:docs && echo "successfully transferred"
+    rclone copy "$installed" gdrive:docs && echo "successfully transferred to google drive.." && rm "$installed" &&
+    echo ".. and removed from ~/Documents"
 else
     echo "unable to transfer file"
 fi
