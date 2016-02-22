@@ -4,7 +4,7 @@ now=$(date)
 yaourt=$(which yaourt)
 ag=$(which ag)
 rclone=$(which rclone)
-installed=~/Documents/installed.md
+installed=/tmp/installed.md
 
 localBin() {
     for f in /usr/local/bin/* ; do
