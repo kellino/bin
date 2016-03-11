@@ -1,0 +1,32 @@
+#!/usr/bin/sh
+
+zip=$(which zip)
+now=$(date +%d-%m-%y)
+rclone=$(which rclone)
+
+
+zipProgramming() {
+    if [ -x "$zip" ]; then
+        cd /tmp || exit
+        "$zip" -9 -r programming-"$now".zip ~/Programming -x \*.git\*
+        echo successfully zipped
+    else
+        echo unable to zip directory
+        exit
+    fi
+}
+
+sendToDrive() {
+    if [ -x "$rclone" ]; then
+        progzip=$(find /tmp -type f -name "*.zip" | ag -i programming)
+        if [ -e "$progzip" ]; then
+            echo transferring "$progzip"... 
+            "$rclone" copy /tmp/"$progzip" gdrive:zips
+            echo removing "$progzip"
+            rm "$progzip"
+        fi
+    fi
+}
+
+
+zipProgramming && sendToDrive
