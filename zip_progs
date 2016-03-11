@@ -25,6 +25,9 @@ sendToDrive() {
             echo removing "$progzip"
             rm "$progzip"
         fi
+    else
+        echo "cannot find the rclone executable"
+        exit
     fi
 }
 
