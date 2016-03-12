@@ -22,7 +22,7 @@ printTitle() {
 set -e
 printTitle
 if [ -x "$yaourt" ] && [ -x "$ag" ]; then
-    { yaourt -Qe | ag -vi core; 
+    { yaourt -Qe; 
         localBin; } >> "$installed"
 else
     echo "yaourt not installed"
