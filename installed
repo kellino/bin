@@ -4,6 +4,7 @@ now=$(date)
 yaourt=$(which yaourt)
 ag=$(which ag)
 rclone=$(which rclone)
+pip=$(which pip2.7)
 installed=/tmp/installed.md
 
 localBin() {
@@ -27,6 +28,9 @@ if [ -x "$yaourt" ] && [ -x "$ag" ]; then
 else
     echo "yaourt not installed"
 fi
+
+if [ -x "$pip" ]; then
+    { pip list; } >> "$installed"
 
 if [ -x "$rclone" ]; then
     rclone copy "$installed" gdrive:docs && echo "successfully transferred to google drive.." && rm "$installed" &&
