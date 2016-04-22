@@ -57,9 +57,6 @@ status.register("network",
                 format_up="{essid} {quality:3.0f}%",
                 color_up="#3eb0dl",)
 
-status.register("openvpn",
-                vpn_name="openvpn",)
-
 # Shows disk usage of /
 # Format:
 # 42/128G [86G]
@@ -72,8 +69,5 @@ status.register("alsa",
                 format="♪{volume}",
                 color_muted=red,
                 color=cyan,)
-
-# shows cmus status
-status.register("cmus",)
 
 status.run()
