@@ -9,10 +9,7 @@ installed=/tmp/installed.md
 
 localBin() {
     for f in /usr/local/bin/* ; do
-        echo "${f}"
-    done  
-    for f in ~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/* ; do
-        echo "${f}"
+        find ~/.cabal/share/doc/x86_64-linux-ghc-7.10.3/ -type d -printf '%f\n'
     done 
 }
 
