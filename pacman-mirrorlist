@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+
+rename() {
+    cd /etc/pacman.d || exit
+    mv mirrorlist mirrorlist.old
+    mv mirrorlist.new mirrorlist
+}
+
+choose_UK_servers() {
+    perl -ne -i 'if (/^## United Kingdom/../^$/) { next if /^## United Kingdom/ || /^$/; s/#//;}' mirrorlist
+}
+
+rename && choose_UK_servers
