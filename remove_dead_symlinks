@@ -1,11 +1,9 @@
 #! /bin/bash
 
-# non-recursive version: 'for itm in *'
-for itm in /home/david/**/*
-do
+for itm in "$HOME/**/*"; do
     if [ -h "$itm" ]
     then
-        echo "$itm found"
+        printf '\e[33m%s\e[0m\n' "$itm found"
         target=$(readlink -fn "$itm")
         if [ ! -e "$target" ]
         then
