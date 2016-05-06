@@ -21,7 +21,8 @@ sendToDrive() {
         progzip=$(find /tmp -type f -name "*.zip" | ag -i programming)
         if [ -e "$progzip" ]; then
             echo transferring "$progzip"... 
-            "$rclone" copy /tmp/"$progzip" gdrive:zips
+            cd /tmp
+            "$rclone" copy "$progzip" gdrive:zips
             echo removing "$progzip"
             rm "$progzip"
         fi
