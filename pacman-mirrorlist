@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 rename() {
     cd /etc/pacman.d || exit
     mv mirrorlist mirrorlist.old
