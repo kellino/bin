@@ -14,6 +14,7 @@ junkfiles=(
     "$HOME/.ghc/ghci_history"
     "$HOME/.pythonhist"
     "$HOME/.lesshst"
+    "$HOME/.sqlite_history"
 )
 
 found=()
