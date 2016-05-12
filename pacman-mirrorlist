@@ -2,12 +2,14 @@
 
 rename() {
     cd /etc/pacman.d || exit
-    mv mirrorlist mirrorlist.old
-    mv mirrorlist.new mirrorlist
+    if [ -e mirrorlist ]; then
+        mv mirrorlist mirrorlist.old
+    fi
+    mv mirrorlist.pacnew mirrorlist
 }
 
 choose_UK_servers() {
-    perl -ne -i 'if (/^## United Kingdom/../^$/) { next if /^## United Kingdom/ || /^$/; s/#//;}' mirrorlist
+    sudo perl -ne -i 'if (/^## United Kingdom/../^$/) { next if /^## United Kingdom/ || /^$/; s/#//;}' mirrorlist
 }
 
 rename && choose_UK_servers
