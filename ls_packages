@@ -3,26 +3,30 @@
 pip=$(which pip)
 pkg=$(which ghc-pkg)
 pacman=$(which pacman)
+today=$(date +'%d-%m-%Y')
 
 cd $HOME/Documents || exit 1
 
+
 if [ -x "$pacman" ]; then
-    $pacman -Q > all_packages
+    $pacman -Q > all_packages-$today
 else
     echo -e "\e[31mcannot find pacman, exiting...\e[0m"
     exit 1
 fi 
 
 if [ -x "$pip" ]; then
-    $pip list >> all_packages
+    $pip list >> all_packages-$today
 else
     echo -e "\e[31mcannot find pip, exiting...\e[0m"
-    if [ -e all_packages ]; then
+    if [ -e all_packages-$today ]; then
         echo 
-        rm all_packages
+        rm all_packages-$today
     fi
 fi
 
 if [ -x "$pkg" ]; then
-    $pkg list | awk '/home/{p=1}p' | sed -r '/home/d; s/\s+(.*)/\1/; /^$/d' >> all_packages
+    $pkg list | awk '/home/{p=1}p' | sed -r '/home/d; s/\s+(.*)/\1/; /^$/d' >> all_packages-$today
 fi
+
+echo -e "\e[1mcomplete package list created in ~/Documents\e[0m"
