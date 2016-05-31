@@ -5,7 +5,7 @@ pkg=$(which ghc-pkg)
 pacman=$(which pacman)
 today=$(date +'%d-%m-%Y')
 
-cd $HOME/Documents || exit 1
+cd $HOME/Documents/Computing || exit 1
 
 
 if [ -x "$pacman" ]; then
