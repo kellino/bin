@@ -9,7 +9,7 @@ rename() {
 }
 
 choose_UK_servers() {
-    sudo perl -ne -i 'if (/^## United Kingdom/../^$/) { next if /^## United Kingdom/ || /^$/; s/#//;}' mirrorlist
+    sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
 }
 
 rename && choose_UK_servers
