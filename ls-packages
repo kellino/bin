@@ -33,4 +33,4 @@ if [ -x "$pkg" ]; then
     $pkg list | awk '/home/{p=1}p' | sed -r '/home/d; s/\s+(.*)/\1/; /^$/d' >> all_packages-$today
 fi
 
-echo -e "\e[1mcomplete package list created in ~/Documents\e[0m"
+echo -e "\e[1mcomplete package list created in ~/Documents/Computing\e[0m"
