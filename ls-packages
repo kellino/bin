@@ -7,6 +7,10 @@ today=$(date +'%d-%m-%Y')
 
 cd $HOME/Documents/Computing || exit 1
 
+if [ -e all_packages* ]; then
+    echo -e "found old listing, deleting..."
+    rm all_packages*
+fi
 
 if [ -x "$pacman" ]; then
     $pacman -Q > all_packages-$today
