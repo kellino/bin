@@ -1,5 +1,13 @@
 #!/usr/bin/bash
 
+get_sudo() {
+    if [ $(id -u) != 0 ]; then
+        echo "This script requires root permissions"
+        sudo "$0"
+        exit
+    fi
+}
+
 rename() {
     cd /etc/pacman.d || exit
     if [ -e mirrorlist ]; then
@@ -12,4 +20,4 @@ choose_UK_servers() {
     sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
 }
 
-rename && choose_UK_servers
+get_sudo && rename && choose_UK_servers
