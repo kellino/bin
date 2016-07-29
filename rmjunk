@@ -16,6 +16,8 @@ junkfiles=(
     "$HOME/.lesshst"
     "$HOME/.sqlite_history"
     "$HOME/.config/nvim/.netrwhist"
+    "$HOME/.nvimlog"
+    "$HOME/.scala_history"
 )
 
 found=()
