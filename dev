@@ -5,17 +5,25 @@ tmux=$(which tmux)
 mutt=$(which mutt)
 ranger=$(which ranger)
 
-if [ -x "$transset" ] && [ -x "$tmux" ]; then
+if [ -x "$transset" ];  then
     transset-df -a 0.75
-    tmux new-session -d 
-    if [ -x "$ranger" ]; then
-        tmux new-window 'ranger'
-    fi
-    if [ -x "$mutt" ]; then
-        tmux new-window 'mutt'
-    fi
-    tmux select-window -t 1
-    tmux -2 attach-session -d
-else 
-    echo "missing a necessary piece of software"
 fi
+
+if [ -x "$tmux" ]; then
+    tmux new-session -d
+    tmux set-option -ga terminal-overrides ",xterm-256color:Tc"
+    tmux detach
+    tmux attach
+fi 
+    
+if [ -x "$ranger" ]; then
+    tmux new-window 'ranger'
+fi
+
+if [ -x "$mutt" ]; then
+    tmux new-window 'mutt'
+fi
+
+tmux select-window -t 1
+tmux -2 attach-session -d
+
