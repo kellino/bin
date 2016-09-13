@@ -1,23 +1,17 @@
 #!/usr/bin/bash
 
-get_sudo() {
-    if [ $(id -u) != 0 ]; then
-        echo "This script requires root permission"
-        sudo "$0"
-        exit
-    fi
-}
+if [ "$(id -u)" != 0 ]; then
+    echo "This script requires root permission"
+    sudo "$0"
+    exit
+fi
 
-rename() {
-    cd /etc/pacman.d || exit
-    if [ -e mirrorlist ]; then
-        mv mirrorlist mirrorlist.old
-    fi
-    mv mirrorlist.pacnew mirrorlist
-}
+cd /etc/pacman.d || exit
 
-choose_UK_servers() {
-    sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
-}
+if [ -e mirrorlist ]; then
+    mv mirrorlist mirrorlist.old
+fi
 
-get_sudo && rename && choose_UK_servers
+mv mirrorlist.pacnew mirrorlist
+
+sed -i '/United Kingdom/,/^$/s/#//' mirrorlist

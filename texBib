@@ -7,19 +7,24 @@ usingMinted=$(ag minted "$file".tex)
 
 ## the minted package needs pdflatex to be run with the shell-escape option
 ## so check for it in the file
-if [ -x "$pdflatex" ] && [ -x "$bibtex" ]; then
-    if [ "$usingMinted" == "" ]; then
-        echo "compiling $file"
-        pdflatex "$file".tex
-        bibtex "$file".aux
-        pdflatex "$file".tex
-        pdflatex "$file".tex
-    else
-        echo "minted detected, so using shell escape"
-        echo "compiling $file"
-        pdflatex -shell-escape "$file".tex
-        bibtex "$file".aux
-        pdflatex -shell-escape "$file".tex
-        pdflatex -shell-escape "$file".tex
+gen_pdf() {
+    if [ -x "$pdflatex" ] && [ -x "$bibtex" ]; then
+        if [ "$usingMinted" == "" ]; then
+            echo "compiling $file"
+            pdflatex "$file".tex
+            bibtex "$file".aux
+            pdflatex "$file".tex
+            pdflatex "$file".tex
+        else
+            echo "minted detected, so using shell escape"
+            echo "compiling $file"
+            pdflatex -shell-escape "$file".tex
+            bibtex "$file".aux
+            makeindex "$file".glo -s "$file".ist -o "$file".gls
+            pdflatex -shell-escape "$file".tex
+            pdflatex -shell-escape "$file".tex
+        fi
     fi
-fi
+}
+
+gen_pdf && zathura "$file".pdf &
