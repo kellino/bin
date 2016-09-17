@@ -4,14 +4,15 @@ if [ "$(id -u)" != 0 ]; then
     echo "This script requires root permission"
     sudo "$0"
     exit
+else
+    cd /etc/pacman.d || exit
+
+    if [ -e mirrorlist ]; then
+        mv mirrorlist mirrorlist.old
+    fi
+
+    mv mirrorlist.pacnew mirrorlist
+
+    sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
 fi
 
-cd /etc/pacman.d || exit
-
-if [ -e mirrorlist ]; then
-    mv mirrorlist mirrorlist.old
-fi
-
-mv mirrorlist.pacnew mirrorlist
-
-sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
