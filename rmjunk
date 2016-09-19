@@ -40,6 +40,8 @@ print_files() {
     else
         printf '\e[1;32m%s\e[0m\n' "The following junk files were found:" 
         printf '\e[31m%s\e[0m\n' "${found[@]}"
+        hist=$(find /home/david -type f -name ".history")
+        printf '\e[31m%s\e[0m\n' "${hist[@]}"
         dispatch
     fi
 }
@@ -63,6 +65,7 @@ delete_files() {
     for i in "${found[@]}"; do
         rm "${i}"
     done
+    xargs rm <<< $(find /home/david -type f -name ".history")
     printf '\e[32m%s\n' "Done!"
 }
 
