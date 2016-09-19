@@ -23,6 +23,7 @@ junkfiles=(
 )
 
 found=()
+hist=() # microML leaves history files all over the place!
 response='n'
 
 search_for_files() {
@@ -31,6 +32,7 @@ search_for_files() {
             found+=("${i}")
         fi
     done
+    hist+=$(find ~/ -type f -name ".history")
 }
 
 print_files() {
@@ -40,9 +42,11 @@ print_files() {
     else
         printf '\e[1;32m%s\e[0m\n' "The following junk files were found:" 
         printf '\e[31m%s\e[0m\n' "${found[@]}"
-        hist=$(find /home/david -type f -name ".history")
-        printf '\e[31m%s\e[0m\n' "${hist[@]}"
-        dispatch
+
+        if [ "${#hist}" -ne 0 ]; then
+                printf '\e[31m%s\e[0m\n' "${hist[@]}"
+        fi
+    dispatch
     fi
 }
 
@@ -65,7 +69,7 @@ delete_files() {
     for i in "${found[@]}"; do
         rm "${i}"
     done
-    xargs rm <<< $(find /home/david -type f -name ".history")
+    xargs rm <<< "${hist[@]}"
     printf '\e[32m%s\n' "Done!"
 }
 
