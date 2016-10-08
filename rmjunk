@@ -19,7 +19,6 @@ junkfiles=(
     "$HOME/.nvimlog"
     "$HOME/.node_repl_history"
     "$HOME/.scala_history"
-    "$HOME/.idris/repl/history"
 )
 
 found=()
@@ -36,7 +35,7 @@ search_for_files() {
 }
 
 print_files() {
-    if [ "${#found}" -eq 0 ]; then
+    if [ "${#found}" -eq 0 ] && [ "${#hist}" -eq 0 ]; then
         printf '\e[32m%s\e[0m\n' "No junk files found"
         exit
     else
@@ -46,7 +45,7 @@ print_files() {
         if [ "${#hist}" -ne 0 ]; then
                 printf '\e[31m%s\e[0m\n' "${hist[@]}"
         fi
-    dispatch
+        dispatch
     fi
 }
 
@@ -69,7 +68,9 @@ delete_files() {
     for i in "${found[@]}"; do
         rm "${i}"
     done
-    xargs rm <<< "${hist[@]}"
+    if [ "${#hist}" -ne 0 ]; then
+        xargs rm <<< "${hist[@]}"
+    fi
     printf '\e[32m%s\n' "Done!"
 }
 
