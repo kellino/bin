@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+
+# thanks to harryNID on the Arch Forum for this nice little one-liner
+
+pacman -Qi | sed '/^Depends On/,/^Required By/{ s/^Required By.*$//; H; d  }; /^Name/!d; /^Name/{ n;x; }'| sed '/^$/s//==================================================================================/'
