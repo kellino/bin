@@ -14,5 +14,7 @@ else
     mv mirrorlist.pacnew mirrorlist
 
     sed -i '/United Kingdom/,/^$/s/#//' mirrorlist
+
+    printf "\e[1mThe pacman mirrorlist has been successfully updated\e[0m\n"
 fi
 
