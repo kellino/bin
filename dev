@@ -1,29 +1,17 @@
 #!/bin/sh
 
-transset=$(which transset-df)
-tmux=$(which tmux)
-mutt=$(which mutt)
-ranger=$(which ranger)
+transset=$(which transset-df 2>/dev/null)
+tmux=$(which tmux 2>/dev/null)
+#mutt=$(which mutt)
+#ranger=$(which ranger)
 
 if [ -x "$transset" ];  then
     transset-df -a 0.75
 fi
 
-if [ -x "$tmux" ]; then
-    tmux new-session -d
+if [ ! -x "$tmux" ]; then
+    exit 
+else
+    tmux
     tmux set-option -ga terminal-overrides ",xterm-256color:Tc"
-    tmux detach
-    tmux attach
-fi 
-    
-if [ -x "$ranger" ]; then
-    tmux new-window 'ranger'
 fi
-
-if [ -x "$mutt" ]; then
-    tmux new-window 'mutt'
-fi
-
-tmux select-window -t 1
-tmux -2 attach-session -d
-
