@@ -5,12 +5,12 @@ yaourt=$(which yaourt)
 ag=$(which ag)
 rclone=$(which rclone)
 pip=$(which pip)
-ghcpkg=$(which ghc-pkg)
+# ghcpkg=$(which ghc-pkg)
 installed=/tmp/installed.md
 
 cabalInstalls() {
-    if [ -x "$ghcpkg" ]; then
-        "$ghcpkg" list | sed -n '/home/,/^$/p' | sed -r '/home/d; s/\s*(.*)/\1/; /^$/d'
+    if [ -f '/home/david/.cabal/world' ]; then
+        cut -d' ' -f1 '/home/david/.cabal/world'
     fi
 }
 
