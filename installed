@@ -5,12 +5,18 @@ yaourt=$(which yaourt)
 ag=$(which ag)
 rclone=$(which rclone)
 pip=$(which pip)
-# ghcpkg=$(which ghc-pkg)
+opam=$(which opam)
 installed=/tmp/installed.md
 
 cabalInstalls() {
     if [ -f '/home/david/.cabal/world' ]; then
         cut -d' ' -f1 '/home/david/.cabal/world'
+    fi
+}
+
+opamInstalls() {
+    if [ -x "$opam" ]; then
+        opam list | cut -d' ' -f1 | tail -n +2
     fi
 }
 
@@ -23,6 +29,7 @@ printTitle
 if [ -x "$yaourt" ] && [ -x "$ag" ]; then
     yaourt -Qe >> "$installed"
     cabalInstalls >> "$installed"
+    opamInstalls >> "$installed"
 else
     echo "yaourt not installed"
 fi
