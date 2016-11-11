@@ -1,13 +1,13 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
-pip=$(which pip)
-pkg=$(which ghc-pkg)
+pip=$(which pip 2>/dev/null)
+pkg=$(which ghc-pkg 2>/dev/null)
 pacman=$(which pacman)
 today=$(date +'%d-%m-%Y')
 
 cd $HOME/Documents/Computing || exit 1
 
-if [ -e all_packages* ]; then
+if [ -e all_packages ]; then
     echo -e "found old listing, deleting..."
     rm all_packages*
 fi
@@ -20,7 +20,7 @@ else
 fi 
 
 if [ -x "$pip" ]; then
-    $pip list >> all_packages-$today
+    $pip list --format=legacy >> all_packages-$today
 else
     echo -e "\e[31mcannot find pip, exiting...\e[0m"
     if [ -e all_packages-$today ]; then

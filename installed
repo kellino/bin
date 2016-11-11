@@ -35,7 +35,7 @@ else
 fi
 
 if [ -x "$pip" ]; then
-    { "$pip" list; } >> "$installed"
+    { "$pip" list --format=legacy; } >> "$installed"
 fi
 
 if [ -x "$rclone" ]; then
