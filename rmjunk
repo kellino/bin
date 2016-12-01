@@ -18,7 +18,6 @@ junkfiles=(
     "$HOME/.config/nvim/.netrwhist"
     "$HOME/.nvimlog"
     "$HOME/.node_repl_history"
-    "$HOME/.scala_history"
     "$HOME/.thumbnails"
 )
 
