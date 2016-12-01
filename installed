@@ -8,10 +8,14 @@ pip=$(which pip)
 opam=$(which opam)
 installed=/tmp/installed.md
 
-cabalInstalls() {
-    if [ -f '/home/david/.cabal/world' ]; then
-        cut -d' ' -f1 '/home/david/.cabal/world'
-    fi
+#cabalInstalls() {
+    #if [ -f '/home/david/.cabal/world' ]; then
+        #cut -d' ' -f1 '/home/david/.cabal/world'
+    #fi
+#}
+
+stackInstalls() {
+    ls "$HOME/.local/bin"
 }
 
 opamInstalls() {
@@ -28,7 +32,7 @@ set -e
 printTitle
 if [ -x "$yaourt" ] && [ -x "$ag" ]; then
     yaourt -Qe >> "$installed"
-    cabalInstalls >> "$installed"
+    stackInstalls >> "$installed"
     opamInstalls >> "$installed"
 else
     echo "yaourt not installed"
