@@ -6,12 +6,13 @@ tmux=$(which tmux 2>/dev/null)
 #ranger=$(which ranger)
 
 if [ -x "$transset" ];  then
-    transset-df -a 0.75
+    transset-df -a 0.9
 fi
 
 if [ ! -x "$tmux" ]; then
     exit 
 else
-    tmux
-    tmux set-option -ga terminal-overrides ",xterm-256color:Tc"
+    tmux new-session
+    tmux new-window 'terminal'
+    tmux attach-session -d
 fi
