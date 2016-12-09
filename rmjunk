@@ -18,33 +18,27 @@ junkfiles=(
     "$HOME/.config/nvim/.netrwhist"
     "$HOME/.nvimlog"
     "$HOME/.node_repl_history"
-    "$HOME/.thumbnails"
+    "$HOME/Microsoft"
 )
 
 found=()
-hist=() # microML leaves history files all over the place!
 response='n'
 
 search_for_files() {
     for i in "${junkfiles[@]}"; do
-        if [ -f "${i}" ]; then
+        if [ -f "${i}" ] || [ -d "${i}" ]; then
             found+=("${i}")
         fi
     done
-    hist+=$(find ~/ -type f -name ".history")
 }
 
 print_files() {
-    if [ "${#found}" -eq 0 ] && [ "${#hist}" -eq 0 ]; then
+    if [ "${#found}" -eq 0 ]; then
         printf '\e[32m%s\e[0m\n' "No junk files found"
         exit
     else
         printf '\e[1;32m%s\e[0m\n' "The following junk files were found:" 
         printf '\e[31m%s\e[0m\n' "${found[@]}"
-
-        if [ "${#hist}" -ne 0 ]; then
-                printf '\e[31m%s\e[0m\n' "${hist[@]}"
-        fi
         dispatch
     fi
 }
@@ -66,12 +60,10 @@ dispatch() {
 delete_files() {
     printf '\e[31m%s\n' "deleting..."
     for i in "${found[@]}"; do
-        rm "${i}"
+        rm -rf "${i}"
     done
-    if [ "${#hist}" -ne 0 ]; then
-        xargs rm <<< "${hist[@]}"
-    fi
     printf '\e[32m%s\n' "Done!"
 }
 
+## entry point
 search_for_files && print_files
