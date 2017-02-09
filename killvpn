@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+process=$(ps -ax | ag openvpn | ag daemon | cut -d' ' -f2)
+
+echo "$process"
+
+sudo kill -9 "$process"
