@@ -8,12 +8,6 @@ pip=$(which pip)
 opam=$(which opam)
 installed=/tmp/installed.md
 
-#cabalInstalls() {
-    #if [ -f '/home/david/.cabal/world' ]; then
-        #cut -d' ' -f1 '/home/david/.cabal/world'
-    #fi
-#}
-
 stackInstalls() {
     ls "$HOME/.local/bin"
 }
