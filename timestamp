@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# simple script to get the timestamp of from image
+
+file=$1
+
+stamp=$(identify -verbose "$file" | grep 'DateTimeOriginal' | sed 's/[ \t]*//' | awk '{print $2, $3}')
+
+if [ "$stamp" == "" ]; then
+    printf "No date time stamp recorded. Sorry\n"
+else
+    ymd=$(echo "$stamp" | cut -d' ' -f1 | sed 's/://g')
+    date=$(date -d "$ymd" '+%A%e %B %Y')
+    hour=$(echo "$stamp" | cut -d' ' -f2)
+    printf "This photo was taken %s at %s\n" "$date" "$hour"
+fi
