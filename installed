@@ -2,7 +2,7 @@
 
 now=$(date)
 yaourt=$(which yaourt)
-ag=$(which ag)
+rg=$(which rg)
 rclone=$(which rclone)
 pip=$(which pip)
 opam=$(which opam)
@@ -24,7 +24,7 @@ printTitle() {
 
 set -e
 printTitle
-if [ -x "$yaourt" ] && [ -x "$ag" ]; then
+if [ -x "$yaourt" ] && [ -x "$rg" ]; then
     yaourt -Qe >> "$installed"
     stackInstalls >> "$installed"
     opamInstalls >> "$installed"

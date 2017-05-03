@@ -18,7 +18,7 @@ zipProgramming() {
 
 sendToDrive() {
     if [ -x "$rclone" ]; then
-        progzip=$(find /tmp -type f -name "*.zip" | ag -i programming)
+        progzip=$(find /tmp -type f -name "*.zip" | rg -i programming)
         if [ -e "$progzip" ]; then
             echo transferring "$progzip"... 
             cd /tmp

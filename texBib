@@ -3,7 +3,7 @@
 pdflatex=$(which pdflatex)
 bibtex=$(which bibtex)
 file="$1"
-usingMinted=$(ag minted "$file".tex)
+usingMinted=$(rg minted "$file".tex)
 
 ## the minted package needs pdflatex to be run with the shell-escape option
 ## so check for it in the file

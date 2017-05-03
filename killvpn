@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-process=$(ps -ax | ag openvpn | ag daemon | cut -d' ' -f2)
+process=$(ps -ax | rg openvpn | rg daemon | cut -d' ' -f2)
 
 echo "$process"
 

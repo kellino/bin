@@ -7,7 +7,7 @@ today=$(date +'%d-%m-%Y')
 
 cd "$HOME"/Documents/Computing || exit 1
 
-old=$(find . -type f | ag 'all_packages')
+old=$(find . -type f | rg 'all_packages')
 
 if [ "$old" != '' ]; then
     echo "deleting old package list"
