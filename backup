@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export GOOGLE_DRIVE_SETTINGS=~/.duplicity/credentials
+# copy the token to home
+cp ~/.duplicity/gdrive.cache ~/
+
+# run duplicity
+duplicity --include-filelist ~/.duplicity/include ~/ gdocs://dkellino.gmail.com/backup
+
+# delete token
+wipe gdrive.cache
