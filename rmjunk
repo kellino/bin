@@ -45,9 +45,9 @@ print_files() {
 }
 
 dispatch() {
-    printf '\e[1m%s\e[0m\n' "Would you like to delete these files? [y/n]"
+    printf '\e[1m%s\e[0m\n' "Would you like to delete these files? [y/n/A]"
     read -r response
-    while [[ ! "${response}" || "${response}" = *[^yYnN]* ]]; do
+    while [[ ! "${response}" || "${response}" = *[^yYnNaA]* ]]; do
         printf '\e[31m%s\e[0m\n' "Incorrect entry. Please try again:"
         read -r response
     done
