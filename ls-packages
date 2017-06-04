@@ -5,7 +5,7 @@ pkg=$(which ghc-pkg 2>/dev/null)
 pacman=$(which pacman)
 today=$(date +'%d-%m-%Y')
 
-cd "$HOME"/Documents/Computing || exit 1
+cd "$HOME"/Documents/computing || exit 1
 
 old=$(find . -type f | rg 'all_packages')
 
