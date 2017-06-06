@@ -5,7 +5,7 @@ yaourt=$(which yaourt)
 rg=$(which rg)
 rclone=$(which rclone)
 pip=$(which pip)
-opam=$(which opam)
+opam=$(which opam 2>/dev/null)
 installed=/tmp/installed.md
 
 stackInstalls() {
