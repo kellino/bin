@@ -1,22 +1,26 @@
 #!/usr/bin/sh
 
 now=$(date)
-yaourt=$(which yaourt)
-rg=$(which rg)
-rclone=$(which rclone)
-pip=$(which pip)
-opam=$(which opam 2>/dev/null)
+yaourt=$(which yaourt 2>/dev/null)
+rg=$(which rg 2>/dev/null)
+rclone=$(which rclone 2>/dev/null)
+pip=$(which pip 2>/dev/null)
+#opam=$(which opam 2>/dev/null)
 installed=/tmp/installed.md
+
+cabalInstalls() {
+    ls "$HOME/.cabal/bin"
+}
 
 stackInstalls() {
     ls "$HOME/.local/bin"
 }
 
-opamInstalls() {
-    if [ -x "$opam" ]; then
-        opam list | cut -d' ' -f1 | tail -n +2
-    fi
-}
+#opamInstalls() {
+    #if [ -x "$opam" ]; then
+        #opam list | cut -d' ' -f1 | tail -n +2
+    #fi
+#}
 
 printTitle() {
     printf "**Installed Software %s**\n\n" "$now" > "$installed"
@@ -27,7 +31,8 @@ printTitle
 if [ -x "$yaourt" ] && [ -x "$rg" ]; then
     yaourt -Qe >> "$installed"
     stackInstalls >> "$installed"
-    opamInstalls >> "$installed"
+    cabalInstalls >> "$installed"
+    #opamInstalls >> "$installed"
 else
     echo "yaourt not installed"
 fi
