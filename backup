@@ -5,7 +5,7 @@ export GOOGLE_DRIVE_SETTINGS=~/.duplicity/credentials
 cp ~/.duplicity/gdrive.cache ~/
 
 # run duplicity
-duplicity --include-filelist ~/.duplicity/include ~/ gdocs://dkellino.gmail.com/backup
+duplicity --allow-source-mismatch --include-filelist ~/.duplicity/include ~/ gdocs://dkellino.gmail.com/backup
 
 # delete token
 wipe gdrive.cache
