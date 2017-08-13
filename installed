@@ -32,7 +32,6 @@ if [ -x "$yaourt" ] && [ -x "$rg" ]; then
     yaourt -Qe >> "$installed"
     stackInstalls >> "$installed"
     cabalInstalls >> "$installed"
-    #opamInstalls >> "$installed"
 else
     echo "yaourt not installed"
 fi
