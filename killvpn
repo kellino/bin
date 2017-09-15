@@ -1,7 +1,0 @@
-#!/usr/bin/sh
-
-process=$(ps -ax | rg openvpn | rg daemon | cut -d' ' -f2)
-
-echo "openvpn pid is $process"
-
-sudo kill -9 "$process"

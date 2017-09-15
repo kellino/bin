@@ -1,0 +1,5 @@
+#!/run/current-system/sw/bin/bash
+
+pushd ~/.local/words >/dev/null
+./words "$@"
+popd >/dev/null

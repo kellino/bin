@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd ~/.tor-browser || exit
-./start-tor-browser.desktop
-cd - || exit

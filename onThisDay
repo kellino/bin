@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/run/current-system/sw/bin/bash
 
 today=$(date +%B_%d)
 wiki='https://en.wikipedia.org/wiki/'
@@ -10,5 +10,6 @@ if [ -f "$cache" ] && [ "$(basename "$cache" | sed 's/.*-//')" == "$today" ]; th
 else
     # if no file exists at all
     find ~/.cache -type f -name 'onthisday*' -exec rm {} +
-    w3m -cols 999 -dump "$wiki""$today" | sed -n '/Events/,/Births/p' | sed '/^$/d' | sed '/Events/d' | sed '/Births/d' >> "$cache"
+    w3m -cols 999 -dump "$wiki""$today" | sed -n '/^Events/,/^Births/p' | sed '/^$/d' \
+    | sed '/^Events/d' | sed '/^Births/d' >> "$cache"
 fi
