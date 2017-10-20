@@ -8,8 +8,8 @@ if [ -f "$cache" ] && [ "$(basename "$cache" | sed 's/.*-//')" == "$today" ]; th
     # file exists and is up-to-date, so do nothing
     exit
 else
-    # if no file exists at all
-    find ~/.cache -type f -name 'onthisday*' -exec rm {} +
+    # if no file exists at all or is out of date
+    find ~/.cache -type f -name 'onthisday*' -delete
     w3m -cols 999 -dump "$wiki""$today" | sed -n '/^Events/,/^Births/p' | sed '/^$/d' \
     | sed '/^Events/d' | sed '/^Births/d' >> "$cache"
 fi
