@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/bin/bash
 
 today=$(date +%B_%d)
 wiki='https://en.wikipedia.org/wiki/'

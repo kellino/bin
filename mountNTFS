@@ -1,0 +1,24 @@
+#!/bin/bash
+
+drive="$1"
+
+if [ "$1" == "" ]; then echo "no drive supplied"; fi
+
+if [ -e "$drive" ] 
+then
+    printf "found %s\n" "$drive"
+    sudo umount "$drive"
+    printf "%s unmounted\n" "$drive" 
+
+
+    if [ ! -d "/Volumes/NTFS" ]
+    then
+        sudo mkdir /Volumes/NTFS/
+    fi
+
+    sudo ntfs-3g "$drive" /Volumes/NTFS/ -olocal -oallow_other
+    printf "%s successfully mounted read/write\n" "$drive"
+else
+    printf "drive %s does not exist\n" "$1"
+    exit
+fi

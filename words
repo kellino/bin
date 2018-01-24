@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/bin/bash
 
 pushd ~/.local/words >/dev/null
 ./words "$@"
