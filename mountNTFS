@@ -15,7 +15,7 @@ fi
 
 if [ -e "$drive" ]
 then
-    printf "found %s\n" "$drive"
+    printf "found %s\\n" "$drive"
     ntfs=$(diskutil list | rg -i ntfs | awk '{print $NF}')
     if [ "$ntfs" = "" ]
     then 
@@ -26,14 +26,14 @@ then
     if [ "$mounted" = "" ]
     then 
         sudo ntfs-3g "$drive" /Volumes/NTFS/ -olocal -oallow_other
-        printf "%s successfully mounted read/write\n" "$drive"
+        printf "%s successfully mounted read/write\\n" "$drive"
     else 
-        printf "unmounting %s\n" "$drive" 
+        printf "unmounting %s\\n" "$drive" 
         sudo umount "$drive"
         sudo ntfs-3g "$drive" /Volumes/NTFS/ -olocal -oallow_other
-        printf "%s successfully mounted read/write\n" "$drive"
+        printf "%s successfully mounted read/write\\n" "$drive"
     fi
 else
-    printf "drive %s does not exist\n" "$1"
+    printf "drive %s does not exist\\n" "$1"
     exit
 fi
