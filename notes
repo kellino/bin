@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+    cd ~/.notes
+    file_to_edit=$(fzf --preview="highlight -O ansi -l {}" --preview-window=right:70%:wrap --query="$given_file")
+    if [ -n "$file_to_edit" ]; then
+        $EDITOR ~/.notes/"$file_to_edit"
+    fi
+fi
+
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -n|--new)
+            NEW="$2"
+            echo ~/.notes/"$NEW".md
+            shift
+            shift
+            ;;
+        -s|--search)
+            cd ~/.notes
+            file_to_edit=$(fzf --preview="highlight -O ansi -l {}" --preview-window=right:70%:wrap --query="$given_file")
+            if [ -n "$file_to_edit" ]; then
+                $EDITOR ~/.notes/"$file_to_edit"
+            fi
+            shift
+            shift
+            ;;
+        -ls|--list)
+            tree ~/.notes
+            shift
+            shift
+            ;;
+        *)
+            echo "Help: -n --new; -s -- search; -ls --list"
+            shift
+            ;;
+    esac
+done
