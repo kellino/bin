@@ -15,7 +15,7 @@ while [[ $# -gt 0 ]]; do
     case $key in
         -n|--new)
             NEW="$2"
-            echo ~/.notes/"$NEW".md
+            nvim ~/.notes/"$NEW".md
             shift
             shift
             ;;
@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         *)
-            echo "Help: -n --new; -s -- search; -ls --list"
+            echo "Help: -n --new; -s -- search; -ls --list; -u --upload; -sn --sync"
             shift
             ;;
     esac

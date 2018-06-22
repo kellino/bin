@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/bin/bash
 
 # simple script to get the timestamp of from image
 # needs imagemagick as a dependency
