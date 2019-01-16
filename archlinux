@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+cd $HOME/Programming/.Arch || exit
+
+current_window=$(tmux list-windows | rg active | awk '{print $2}')
+
+old="${current_window%?}"
+
+tmux rename-window archlinux
+vagrant up && vagrant ssh
+
+tmux rename-window "$old"
+vagrant halt

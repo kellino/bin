@@ -1,0 +1,9 @@
+#!/bin/bash
+
+brew update && brew upgrade && brew cleanup && brew prune &&
+    \ rustup update &&
+    \ omf update &&
+    \ stack upgrade &&
+    \ stack update &&
+    \ cabal update
+

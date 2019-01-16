@@ -1,0 +1,9 @@
+#!/bin/bash
+
+window=$(tmux display-message -p '#W')
+
+cd ~/Programming/.Kali || exit
+
+tmux rename-window kali
+
+vagrant up && vagrant ssh && vagrant suspend && tmux rename-window "$window"

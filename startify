@@ -1,5 +1,5 @@
 #!/bin/bash
 
-printf "On this day:\n %s" "$(shuf -n1  ~/.cache/onthisday-*)" | fmt -80 -s | \
-    $(shuf -n1 -e cowsay cowthink) -"$(shuf -n1 -e b d g p s t w y)" -f \
-    "$(shuf -n1 -e $(cowsay -l | tail -n -2))"
+printf "On this day:\n %s" "$(gshuf -n1  ~/.cache/onthisday-*)" | fmt -80 -s | \
+    $(gshuf -n1 -e cowsay cowthink) -"$(gshuf -n1 -e b d g p s t w y)" -f \
+    "$(gshuf -n1 -e $(cowsay -l | tail -n -2))"

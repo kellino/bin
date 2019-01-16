@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case "$key" in
+        skim)
+            osascript -e 'quit app "Skim"'
+            shift
+            ;;
+        slack)
+            osascript -e 'quit app "Slack"'
+            shift
+            ;;
+        spotify)
+            osascript -e 'quit app "Spotify"'
+            shift
+            ;;
+        itunes)
+            osascript -e 'quit app "iTunes"'
+            shift
+            ;;
+        whatsapp)
+            osascript -e 'quit app "WhatsApp"'
+            shift
+            ;;
+        *)
+            echo "did not recognise option"
+            shift
+            ;;
+    esac
+done
