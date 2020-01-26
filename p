@@ -31,7 +31,7 @@ else
             chunkc tiling::monitor -f 3
             ;;
         *) 
-            echo "no reader"
+            exit
             ;;
     esac
 fi 

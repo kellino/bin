@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $HOME/Programming/.Arch || exit
+cd $HOME/.Arch || exit
 
 current_window=$(tmux list-windows | rg active | awk '{print $2}')
 

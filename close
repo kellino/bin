@@ -4,6 +4,10 @@ while [[ $# -gt 0 ]]; do
     key="$1"
 
     case "$key" in
+        calendar)
+            osascript -e 'quit app "Calendar"'
+            shift
+            ;;
         skim)
             osascript -e 'quit app "Skim"'
             shift
@@ -14,10 +18,6 @@ while [[ $# -gt 0 ]]; do
             ;;
         spotify)
             osascript -e 'quit app "Spotify"'
-            shift
-            ;;
-        itunes)
-            osascript -e 'quit app "iTunes"'
             shift
             ;;
         whatsapp)
